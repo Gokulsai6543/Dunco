@@ -1,11 +1,11 @@
 
 import './App.css';
-import Layout from './components/DuncoLayout';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div className="App">
-      <Layout/>
+      <Header/>
     </div>
   );
 }
