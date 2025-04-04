@@ -1,18 +1,30 @@
-name : CiCheck
-on: 
+name: Checkout and List Files
+
+on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - main
+
 jobs:
-  checkout-job:
-    runs-on: ubuntu-22.04
+  checkout_and_list_files:
+    runs-on: ubuntu-latest
 
     steps:
-      - name: code checkout
-      - uses: actions/checkout@v3
+      # Step 1: Checkout the repository
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: list files in repo
+      # Step 2: List files in the repository
+      - name: List files
         run: |
-          echo "Listing the files"
+          echo "Listing files in the repository"
           ls -R
-      
+
+      # Optional: You can also list the files on the server's file system (runner)
+      - name: List files in the runner server
+        run: |
+          echo "Listing files in the runner server"
+          ls -R /home/runner/work/$(basename $GITHUB_REPOSITORY)/$(basename $GITHUB_REPOSITORY)
